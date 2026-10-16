@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bookmanager.mapper.BorrowRecordMapper">
+    <select id="selectBorrowPage" resultType="com.example.bookmanager.vo.BorrowVO">
+        SELECT
+            br.id,
+            br.book_id,
+            b.book_name,
+            br.user_id,
+            u.username,
+            br.borrow_time,
+            br.return_time,
+            br.is_return
+        FROM borrow_record br
+                 LEFT JOIN book b ON br.book_id = b.id
+                 LEFT JOIN user u ON br.user_id = u.id
+        ORDER BY br.id DESC
+    </select>
+</mapper>
